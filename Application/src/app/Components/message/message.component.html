@@ -1,0 +1,131 @@
+<!-- Component to display mails -->
+<div class="container" fxLayout="row" fxLayoutWrap fxLayoutAlign="center">
+  <div fxFlex="fxFlexForCol1%" class="flex" >
+    <!-- To filter table based on input -->
+    <mat-form-field appearance="standard">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+    <!-- Table to display mail datails -->
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+      <!-- First column displaying mail from -->
+      <ng-container matColumnDef="msg_from">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> From </th>
+        <td mat-cell *matCellDef="let item"> {{item.msg_from}} </td>
+      </ng-container>
+      <!-- Second column displaying subject -->
+      <ng-container matColumnDef="msg_subject">
+        <th mat-header-cell *matHeaderCellDef  mat-sort-header> Subject </th>
+        <td mat-cell *matCellDef="let item"> {{item.msg_subject}} </td>
+      </ng-container>
+      <!-- Third column displaying mailed date -->
+      <ng-container matColumnDef="msg_date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+        <td mat-cell *matCellDef="let item"> {{item.msg_date}} </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="getRecord(row)"
+        [ngClass]="{ 'selected': row === selectedRow }"></tr>
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        </tr>
+    </table>
+    <!-- Pagination for the table -->
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+  <!-- Div to display selected mail details -->
+  <div fxFlex="50%" class="flex container" *ngIf="div1">
+    <mat-card>
+      <!-- Mat card header -->
+      <mat-card-header>
+        <mat-card-title>Details</mat-card-title>
+        <mat-card-title>
+          <button mat-icon-button mat-raised-button class="example1-icon" (click)="div2Function()">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      <!-- mat card content containing details of the mail -->
+      <mat-card-content>
+        <div fxLayout="row" fxLayoutWrap fxLayoutAlign="center">
+          <div fxFlex="50%">
+            <p><b>From: </b>{{detail.msg_from}}</p>
+            <p><b>Date: </b>{{detail.msg_date}}</p>
+            <p><b>Subject: </b>{{detail.msg_subject}}</p>
+            <br>
+            <div >
+              <b fxFlex="50%" class="assign">Update Assignee: </b>              
+              <form class="example-form" fxFlex="50%" style="font-size: 12px">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-label>Select Assignee</mat-label>
+                  <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto" placeholder="List of Assignee">
+                  <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                      {{option.username}}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+              </form>
+            </div>
+          </div>
+          <div fxFlex="50%" class="form-group">
+            <div>
+              <p><label fxFlex="40%"><b>Assigned to: </b></label>
+                <input fxFlex="60%" placeholder="Not Assigned" type="text" [disabled]="true" class="form-control" id="Assignee"
+                  [(ngModel)]="Assignee" />
+              </p>
+            </div>
+            <!-- <input placeholder="Enter Assignee" type="text" class="form-control" id="Assignee" [(ngModel)]="Assignee" /> -->
+            <p><label fxFlex="40%"><b>Status: </b></label>
+              <select fxFlex="60%" class="form-control" id="status" [(ngModel)]="statusSelected" name="status" required>
+                <option value=null disabled selected hidden>Select Status</option>
+                <option value="" disabled selected hidden>Select Status</option>
+                <option value="Assigned">Assigned</option>
+                <option value="In-Progress">In-Progress</option>
+                <option value="Solved">Solved</option>
+              </select>
+            </p>
+            <p><label fxFlex="40%"><b>Priority: </b></label>
+              <select fxFlex="60%" class="form-control" placeholder="Select Priority" id="priority"
+                [(ngModel)]="selected" name="priority" required>
+                <option value=null disabled selected hidden>Select Priority</option>
+                <option value="" disabled selected hidden>Select Priority</option>
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+              </select>
+            </p>
+            <p><label fxFlex="40%"><b>Incident Type: </b></label>
+              <select fxFlex="60%" class="form-control" placeholder="Select Incident Type" id="priority"
+                [(ngModel)]="incidentType" name="Incident" required>
+                <option value=null disabled selected hidden>Select Incident Type</option>
+                <option value="" disabled selected hidden>Select Incident Type</option>
+                <option value="Restoration">Restoration</option>
+                <option value="Request">Request</option>
+              </select>
+            </p>
+          </div>
+
+        </div>
+        <b>Body:</b>
+        <textarea>{{detail.msg_body}}</textarea>
+        <br>
+        <br>
+        <b>Comment:</b>
+        <textarea placeholder="Add the comments / solution here..." [(ngModel)]="comment"></textarea>
+        <br>
+        <br>
+        <button mat-raised-button class="example-icon logout" color="primary" (click)="post()">Save</button>
+        <br>
+        <br>
+        <b><i>Comment History: </i></b>
+        <hr>
+        <div *ngFor="let comments of postcomment">
+          <p style="white-space: pre-line">{{detail.comments}}</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

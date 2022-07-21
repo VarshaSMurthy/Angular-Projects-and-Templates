@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
+ }
+
+
+/* mat card header alignment in message component*/
+.mat-card-header-text{
+    width: 100% !important;
+  }
+
+/* to cahnge background of sidebar component
+add div with class container for each component so effect show up */
+.container{
+  background-color: #e7e8e9;
+  height: auto;
+}
+

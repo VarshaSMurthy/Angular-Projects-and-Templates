@@ -1,0 +1,16 @@
+.example-spacer {
+    flex: 1 1 auto;
+
+  }
+
+  .logout {
+    transition-duration: 0.4s;
+  }
+  
+  .logout:hover {
+    background-color: #ff4081; /* Green */
+    color: white;
+  }
+  .mat-toolbar{
+    position: sticky;
+   }

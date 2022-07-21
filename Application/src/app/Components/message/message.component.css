@@ -1,0 +1,122 @@
+table {
+    width: 100%;
+ 
+  }
+
+  .flex{
+    margin: 5px;
+  }
+
+  td{
+    cursor: pointer;
+  }
+
+  .mat-row:hover > .mat-cell {
+    background-color: #1DE9B6;
+    color:  white
+  }
+
+  .example1-icon:hover {
+    background-color: #1DE9B6; 
+    color: black;
+  }
+  .example1-icon{
+    background-color: #37474F; 
+    color: white;
+  }
+  textarea{
+    width: 100%;
+  }
+  mat-card-content{
+    margin-top: 5px;
+  }
+  .logout {
+    transition-duration: 0.4s;
+  }
+  
+  .logout:hover {
+    background-color: #1DE9B6; 
+    color: black;
+  }
+
+  .selected > .mat-cell{
+    background-color: #e7e8e9;
+    color: black;
+  }
+
+  .mat-card{
+    padding: 0px;
+  }
+  .mat-card-content{
+    padding: 15px;
+  }
+
+  :host ::ng-deep .mat-card-header-text {
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0px;
+    background-color: #37474F; 
+    color: white;
+    /* padding: 10px; */
+    padding-top: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.assign{
+  padding-top: 15px;
+}
+
+
+table{
+  width: 100%;
+ }
+ 
+ .mat-column-msg_from {
+   word-wrap: break-word !important;
+   white-space: unset !important;
+   flex: 0 0 28% !important;
+   width: 28% !important;
+   overflow-wrap: break-word;
+   word-wrap: break-word;
+ 
+   word-break: break-word;
+ 
+   -ms-hyphens: auto;
+   -moz-hyphens: auto;
+   -webkit-hyphens: auto;
+   hyphens: auto;
+ }
+ 
+ .mat-column-msg_subject {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 38% !important;
+  width: 38% !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+.mat-column-msg_date {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 28% !important;
+  width: 28% !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}

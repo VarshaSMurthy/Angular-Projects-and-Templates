@@ -1,0 +1,14 @@
+<div >
+    <mat-toolbar class="mat-toolbar" color="primary"*ngIf="isLoggedIn$ | async as isLoggedIn" >
+        <button mat-icon-button class="example-icon logout1" (click)="toggleSideBar()" aria-label="Example icon-button with menu icon">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span>My Application</span>
+        <span class="example-spacer"></span>
+        <button mat-button routerLink="/login" *ngIf="!isLoggedIn">Login</button>
+        <button mat-raised-button class="example-icon logout" color="primary" aria-label="Example icon-button with share icon" (click)="onLogout()" *ngIf="isLoggedIn">
+          <mat-icon>logout</mat-icon>
+           Logout
+        </button>
+      </mat-toolbar>
+    </div>

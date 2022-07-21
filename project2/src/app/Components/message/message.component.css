@@ -1,0 +1,39 @@
+table {
+    width: 100%;
+    
+  }
+  .flex{
+    margin: 5px;
+  }
+
+  td{
+    cursor: pointer;
+  }
+  .mat-row:hover {
+    background-color: rgb(211, 225, 240);
+  }
+  .card-container-right{
+    display: inline;
+  }
+  
+  .card-container-left{
+    display: inline;
+  }
+  .example-icon:hover {
+    background-color: #3d57ce; 
+    color: white;
+  }
+  textarea{
+    width: 100%;
+  }
+  mat-card-content{
+    margin-top: 5px;
+  }
+  .logout {
+    transition-duration: 0.4s;
+  }
+  
+  .logout:hover {
+    background-color: #ff4081; 
+    color: white;
+  }
